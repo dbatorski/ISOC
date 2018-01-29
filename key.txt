@@ -1,0 +1,11 @@
+PC_ENT;"Percentage of enterprises"
+PC_ENT_AESELL;"Percentage of enterprises receiving e-commerce orders over the last calendar year"
+PC_ENT_AWSELL;"Percentage of enterprises with web sales"
+PC_AWSVAL;"Percentage of web sales"
+
+E_ESELL;"Enterprises selling online (at least 1% of turnover)"
+
+10_C10_S951_XK;"All enterprises, without financial sector (10 persons employed or more)"
+L_C10_S951_XK;"Large enterprises (250 persons employed or more), without financial sector"
+M_C10_S951_XK;"Medium enterprises (50-249 persons employed), without financial sector"
+S_C10_S951_XK;"Small enterprises (10-49 persons employed), without financial sector"
