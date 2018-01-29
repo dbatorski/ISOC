@@ -3,7 +3,10 @@ PC_ENT_AESELL;"Percentage of enterprises receiving e-commerce orders over the la
 PC_ENT_AWSELL;"Percentage of enterprises with web sales"
 PC_AWSVAL;"Percentage of web sales"
 
+E_AESELL;"Enterprises having received orders via computer mediated networks"
 E_ESELL;"Enterprises selling online (at least 1% of turnover)"
+E_AESEU;"Enterprises having done electronic sales to other EU countries"
+E_AESEUWW;"Enterprises having done electronic sales to other EU countries and the rest of the world"
 
 10_C10_S951_XK;"All enterprises, without financial sector (10 persons employed or more)"
 L_C10_S951_XK;"Large enterprises (250 persons employed or more), without financial sector"

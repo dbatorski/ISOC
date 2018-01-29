@@ -25,6 +25,8 @@ head(dat_eSales)
 # Select data for all enterprises and prct.
 dat_eSalesALL <- dat_eSales %>% 
   filter(sizen_r2=='10_C10_S951_XK' & unit=='PC_ENT')
+dat_eSalesALL <- dat_eSales %>% 
+  filter(unit=='PC_ENT')
 head(dat_eSalesALL)
 table(dat_eSalesALL$indic_is)
 table(dat_eSalesALL$geo)
@@ -40,9 +42,20 @@ countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT
 #######################################################################
 # Wykresy 
 
-plot_eurostat_lines(dat_eSalesALL, "E_AESELL", "Firm otrzymujące zamówienia przez sieć")
-plot_eurostat_lines(dat_eSalesALL, "E_ESELL", "Firm sprzedające przez sieć (min 1% przychodów)")
+plot_eurostat_lines(dat_eSalesALL, "E_AESELL", "10_C10_S951_XK", "Firm otrzymujące zamówienia przez sieć")
+plot_eurostat_lines(dat_eSalesALL, "E_ESELL", "10_C10_S951_XK", "Firm sprzedające przez sieć (min 1% przychodów)")
+plot_eurostat_lines(dat_eSalesALL, "E_AESEU", "10_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów UE")
+plot_eurostat_lines(dat_eSalesALL, "E_AESEUWW", "10_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów")
 
+plot_eurostat_lines(dat_eSalesALL, "E_AESELL", "L_C10_S951_XK", "Firm otrzymujące zamówienia przez sieć")
+plot_eurostat_lines(dat_eSalesALL, "E_ESELL", "L_C10_S951_XK", "Firm sprzedające przez sieć (min 1% przychodów)")
+plot_eurostat_lines(dat_eSalesALL, "E_AESEU", "L_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów UE")
+plot_eurostat_lines(dat_eSalesALL, "E_AESEUWW", "L_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów")
+
+plot_eurostat_bars(dat_eSalesALL, "E_AESELL", "10_C10_S951_XK", 2017, "Firm otrzymujące zamówienia przez sieć")
+plot_eurostat_bars(dat_eSalesALL, "E_ESELL", "10_C10_S951_XK", 2017, "Firm sprzedające przez sieć (min 1% przychodów)")
+plot_eurostat_bars(dat_eSalesALL, "E_AESEU", "10_C10_S951_XK", 2017, "Firm sprzedające przez sieć do innych krajów UE")
+plot_eurostat_bars(dat_eSalesALL, "E_AESEUWW", "10_C10_S951_XK", 2017, "Firm sprzedające przez sieć do innych krajów")
 
 #######################################################################
 # Testowy kod do robienia wykresów
