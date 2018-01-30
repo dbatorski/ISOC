@@ -57,8 +57,12 @@ plot_eurostat_bars(dat_eSalesALL, "E_ESELL", "10_C10_S951_XK", 2017, "Firm sprze
 plot_eurostat_bars(dat_eSalesALL, "E_AESEU", "10_C10_S951_XK", 2017, "Firm sprzedające przez sieć do innych krajów UE")
 plot_eurostat_bars(dat_eSalesALL, "E_AESEUWW", "10_C10_S951_XK", 2017, "Firm sprzedające przez sieć do innych krajów")
 
-plot_eurostat_bars(dat_eSalesALL, "E_AESELL","E_ESELL", "10_C10_S951_XK", 
+plot_eurostat_cross(dat_eSalesALL, "E_AESELL","E_ESELL", "10_C10_S951_XK", 
                    2017, "Firm otrzymujące zamówienia przez sieć")
+plot_eurostat_cross(dat_eSalesALL, "E_ESELL", "E_IACC", "10_C10_S951_XK", 
+                    2017, "Firm otrzymujące zamówienia przez sieć", dat_IntAccess)
+
+
 #######################################################################
 # Testowy kod do robienia wykresów
 dane = dat_eSalesALL %>%

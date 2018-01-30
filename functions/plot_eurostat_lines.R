@@ -9,7 +9,7 @@ plot_eurostat_lines = function(dataset, indicator, breakdown='10_C10_S951_XK', p
   rmin = min(dane$time, na.rm=T)
   plot(c(rmin-1,2018),c(0,maks), type='n', las=1, bty='l', xlab="Rok", ylab="Procent firm",
        main=plottitle)
-  for(i in coutries){
+  for(i in countries){
     seria <- dane %>% 
       filter(geo==i) %>%
       select(time, values)

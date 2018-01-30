@@ -1,14 +1,14 @@
 # Function for ploting braplots with eurostat data
 
-plot_eurostat_bars = function(dataset, indicator1, indicator2, breakdown='10_C10_S951_XK', 
-                              rok=2017, plottitle){
+plot_eurostat_cross = function(dataset, indicator1, indicator2, breakdown='10_C10_S951_XK', 
+                              rok=2017, plottitle, dataset2=dataset){
   klucz=read.table(file="key.txt", header=F, sep=";")
   countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT","RO","SE","SK",
               "AT","BE","DE","DK","EA","EU28","FI","FR","IE","LT","SI","UK")
   dane1 = dataset %>%
     filter(indic_is==indicator1, sizen_r2==breakdown, time==rok, geo %in% countries) %>%
     select(geo, val1=values)
-  dane2 = dataset %>%
+  dane2 = dataset2 %>%
     filter(indic_is==indicator2, sizen_r2==breakdown, time==rok, geo %in% countries) %>%
     select(geo, val2=values)
   dane = left_join(dane1, dane2)
