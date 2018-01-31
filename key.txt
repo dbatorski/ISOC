@@ -13,3 +13,5 @@ E_IACC;"Enterprises with internet access"
 L_C10_S951_XK;"Large enterprises (250 persons employed or more), without financial sector"
 M_C10_S951_XK;"Medium enterprises (50-249 persons employed), without financial sector"
 S_C10_S951_XK;"Small enterprises (10-49 persons employed), without financial sector"
+
+I_BUY3;"Last online purchase: in the last 3 months"

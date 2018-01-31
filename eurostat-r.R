@@ -17,8 +17,25 @@ query
 #kable(query)
 
 
-dat_eSales <- get_eurostat(id=query$code[1], time_format="num")
+# DANE sprzedaż przez internet
+dat_eSales <- get_eurostat(id="isoc_ec_eseln2", time_format="num")
+
+# DANE dostęp do internetu w firmach
 dat_IntAccess <- get_eurostat(id="isoc_ci_in_en2", time_format="num")
+
+# DANE korzystanie z internetu
+dat_IntUse <- get_eurostat(id="isoc_ci_ifp_iu", time_format="num")
+table(dat_IntUse$indic_is)
+dat_IntUse <- dat_IntUse %>% 
+  filter(indic_is=="I_IU3", unit=="PC_IND", ind_type=="IND_TOTAL", geo, time)
+#dat_IntUse <- label_eurostat(dat_IntUse)
+
+# DANE kupowanie w internecie
+dat_IntBuy <- get_eurostat(id="isoc_ec_ibuy", time_format="num")
+dat_IntBuy <- dat_IntBuy %>% 
+  filter(indic_is=="I_BUY3", unit=="PC_IND", ind_type=="IND_TOTAL" , geo %in% countries) #, time)
+dat_IntBuy$indic_is
+
 
 head(dat_eSales)
 
@@ -61,6 +78,18 @@ plot_eurostat_cross(dat_eSalesALL, "E_AESELL","E_ESELL", "10_C10_S951_XK",
                    2017, "Firm otrzymujące zamówienia przez sieć")
 plot_eurostat_cross(dat_eSalesALL, "E_ESELL", "E_IACC", "10_C10_S951_XK", 
                     2017, "Firm otrzymujące zamówienia przez sieć", dat_IntAccess)
+
+plot_eurostat_cross(dat_eSalesALL, "E_ESELL", "E_IACC", "10_C10_S951_XK", 
+                    2017, "Firm otrzymujące zamówienia przez sieć", dat_IntUse)
+
+dat_IntBuy17 <- dat_IntBuy %>% 
+  filter(indic_is=="I_BUY3", unit=="PC_IND", ind_type=="IND_TOTAL" , 
+         geo %in% countries, time==2017) %>%
+  select(geo, val1=values)
+dat_eSales17 <- dat_eSales %>% 
+  filter(indic_is=="E_ESELL", unit=='PC_ENT', sizen_r2=="10_C10_S951_XK", geo %in% countries, time==2017) %>%
+  select(geo, val2=values)
+plot_eurostat_cross(dat_IntBuy17, dat_eSales17, "Firm otrzymujące zamówienia przez sieć")
 
 
 #######################################################################
