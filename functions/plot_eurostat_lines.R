@@ -1,13 +1,14 @@
 # Function for ploting lines with eurostat data
 
-plot_eurostat_lines = function(dataset, indicator, breakdown='10_C10_S951_XK', plottitle){
+plot_eurostat_lines = function(dataset, indicator, breakdown='10_C10_S951_XK', plottitle,
+                               ylab="Procent firm"){
   countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT","RO","SE","SK",
               "AT","BE","DE","DK","EA","EU28","FI","FR","IE","LT","SI","UK")
   dane = dataset %>%
     filter(indic_is==indicator, sizen_r2==breakdown, geo %in% countries)
   maks = max(dane$values, na.rm=T)
   rmin = min(dane$time, na.rm=T)
-  plot(c(rmin-1,2018),c(0,maks), type='n', las=1, bty='l', xlab="Rok", ylab="Procent firm",
+  plot(c(rmin-1,2018),c(0,maks), type='n', las=1, bty='l', xlab="Rok", ylab=ylab,
        main=plottitle)
   for(i in countries){
     seria <- dane %>% 
