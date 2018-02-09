@@ -7,6 +7,14 @@ library("eurostat")
 library(dplyr)
 
 
+kolor0 = rgb(216, 216, 216, max=255)
+kolor1 = rgb(0, 36, 87, max=255)
+kolor2 = rgb(248, 152, 29, max=255)
+kolor3 = rgb(0, 178, 136, max=255)
+kolor4 = rgb(153, 51, 0, max=255)
+kolor5 = rgb(0, 174, 216, max=255)
+kolor6 = rgb(83, 83, 83, max=255)
+
 # Search for data tables
 toc <- get_eurostat_toc()
 toc

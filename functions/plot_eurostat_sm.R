@@ -1,8 +1,8 @@
 # Barplot for social media
 
-plot_eurostat_sm <- function(dane=dat_SocMed2, zmienna, plottitle){
+plot_eurostat_sm <- function(dane=dat_SocMed2, zmienna, plottitle, rok=2017){
   dane = dat_SocMed2 %>%
-    filter(indic_is==zmienna & time==2017) %>%
+    filter(indic_is==zmienna & time==rok) %>%
     arrange(desc(values))
   kolory = rep("grey",29)
   kolory[which(dane$geo=='PL')] = "red"

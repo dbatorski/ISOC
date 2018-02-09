@@ -15,16 +15,16 @@ plot_eurostat_lines = function(dataset, indicator, breakdown='10_C10_S951_XK', p
       filter(geo==i) %>%
       select(time, values)
     lines(seria, col='grey')
-    text(2017, seria[seria$time==2017,], labels=i, pos=4, offset=0.5, cex=0.6, col='grey')
-    text(rmin, seria[seria$time==rmin,], labels=i, pos=2, offset=0.5, cex=0.6, col='grey')
+    text(2017, seria[seria$time==2017,], labels=i, pos=4, offset=0.5, cex=0.6, col=kolor0)
+    text(rmin, seria[seria$time==rmin,], labels=i, pos=2, offset=0.5, cex=0.6, col=kolor0)
   }
   s.pol <- dane[dane$geo=="PL",c("time", "values")]
   s.ue <- dane[dane$geo=="EU28",c("time", "values")]
-  lines(s.pol, lwd=2, col=2)
-  lines(s.ue, lwd=2, col=4)
-  text(rmin, s.pol[s.pol$time==rmin,], labels="PL", pos=2, offset=0.5, cex=0.6, col=2)
-  text(2017, s.pol[s.pol$time==2017,], labels="PL", pos=4, offset=0.5, cex=0.6, col=2)
-  text(rmin, s.ue[s.ue$time==rmin,], labels="EU28", pos=2, offset=0.5, cex=0.6, col=4)
-  text(2017, s.ue[s.ue$time==2017,], labels="EU28", pos=4, offset=0.5, cex=0.6, col=4)
+  lines(s.pol, lwd=2, col=kolor2)
+  lines(s.ue, lwd=2, col=kolor1)
+  text(rmin, s.pol[s.pol$time==rmin,], labels="PL", pos=2, offset=0.5, cex=0.6, col=kolor2)
+  text(2017, s.pol[s.pol$time==2017,], labels="PL", pos=4, offset=0.5, cex=0.6, col=kolor2)
+  text(rmin, s.ue[s.ue$time==rmin,], labels="EU28", pos=2, offset=0.5, cex=0.6, col=kolor1)
+  text(2017, s.ue[s.ue$time==2017,], labels="EU28", pos=4, offset=0.5, cex=0.6, col=kolor1)
   
 }

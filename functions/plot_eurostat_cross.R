@@ -15,16 +15,16 @@ plot_eurostat_cross = function(dataset, dataset2, plottitle, labx="X", laby="Y",
 #    select(geo, val2=values)
 #  dane = left_join(dane1, dane2)
   dane = left_join(dataset, dataset2)
-  kolory = rep("grey",29)
-  kolory[which(dane$geo=='PL')] = "red"
-  kolory[which(dane$geo=='EU28')] = "blue"
+  kolory = rep(kolor6,29)
+  kolory[which(dane$geo=='PL')] = kolor2
+  kolory[which(dane$geo=='EU28')] = kolor1
   maks1 = max(dane$val1, na.rm=T)
   maks2 = max(dane$val2, na.rm=T)
   plot(c(0,maks1), c(0,maks2), type='n', las=1, bty='l', main=plottitle, xlab=labx, ylab=laby)
   points(dane$val1, dane$val2, pch=19, col=1, cex=0.5)
-  text(dane$val1, dane$val2, labels=dane$geo, cex=0.75, col='grey', offset=0)
-  text(dane$val1[dane$geo=='PL'], dane$val2[dane$geo=='PL'], labels="PL", cex=0.75, col=2, offset=0)
-  text(dane$val1[dane$geo=='EU28'], dane$val2[dane$geo=='EU28'], labels="EU28", cex=0.75, col=4, offset=0)
+  text(dane$val1, dane$val2, labels=dane$geo, cex=0.75, col=kolor0, offset=0)
+  text(dane$val1[dane$geo=='PL'], dane$val2[dane$geo=='PL'], labels="PL", cex=0.75, col=kolor2, offset=0)
+  text(dane$val1[dane$geo=='EU28'], dane$val2[dane$geo=='EU28'], labels="EU28", cex=0.75, col=kolor1, offset=0)
   if(regresja==T){
     model1 <- lm(dane$val2 ~ dane$val1)
     abline(model1, col=1)
