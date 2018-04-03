@@ -15,7 +15,7 @@ dane = dat_SocMed2 %>%
   filter(indic_is=="E_ADS" & time==2016) %>%
   arrange(desc(values))
 
-png("figures/eAds.png", width=640, height=400)
+png("figures/eAds.png", width=800, height=400)
 plot_eurostat_sm(dat_SocMed2, "E_ADS", "Firmy płacące za reklamę w sieci (2016)", rok=2016)
 dev.off()
 
@@ -56,7 +56,7 @@ dat_eSales17 <- dat_eSales %>%
   filter(indic_is=="E_ESELL", unit=='PC_ENT', sizen_r2=="10_C10_S951_XK", geo %in% countries, time==2017) %>%
   select(geo, val2=values)
 
-png("figures/eAdsESell.png", width=640, height=400)
+png("figures/eAdsESell.png", width=800, height=400)
 plot_eurostat_cross(dat_SocMed16, dat_eSales17, "Reklama w sieci a sprzedaż online", 
                     "Procent firm reklamujących się w sieci", "Procent firm, które sprzedają w sieci")
 dev.off()
@@ -83,8 +83,15 @@ png("figures/eSMcntshr.png", width=640, height=400)
 plot_eurostat_sm(dat_SocMed2, "E_SM1_CNTSHR", "Strony umożliwiające udostępnianie multimediów")
 dev.off()
 
-png("figures/eSMsm.png", width=640, height=400)
+png("figures/eSMsm.png", width=800, height=400)
 plot_eurostat_sm(dat_SocMed2, "E_SM1_SNET", "Serwisy społecznościowe")
+dev.off()
+
+png("figures/eSMsm2.png", width=400, height=400)
+op=par()
+par(mar=c(5,4,2,0.1))
+plot_eurostat_sm(dat_SocMed2, "E_SM1_SNET", "Serwisy społecznościowe")
+par(op)
 dev.off()
 
 png("figures/eSMwiki.png", width=640, height=400)

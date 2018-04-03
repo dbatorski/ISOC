@@ -10,16 +10,32 @@ source("functions/plot_eurostat_lines.R")
 source("functions/plot_eurostat_cross.R")
 source("functions/plot_eurostat_sm.R")
 
+# Kolory UKE
+kolor0 = rgb(218, 218, 218, max=255)
+kolor1 = rgb(49, 65, 141, max=255)
+kolor2 = rgb(199, 213, 64, max=255)
+kolor3 = rgb(74, 74, 73, max=255)
+# Kolory WISE
+#kolor0 = rgb(216, 216, 216, max=255)
+#kolor1 = rgb(0, 36, 87, max=255)
+#kolor2 = rgb(248, 152, 29, max=255)
+#kolor3 = rgb(0, 178, 136, max=255)
+#kolor4 = rgb(153, 51, 0, max=255)
+#kolor5 = rgb(0, 174, 216, max=255)
+#kolor6 = rgb(83, 83, 83, max=255)
 
-kolor0 = rgb(216, 216, 216, max=255)
-kolor1 = rgb(0, 36, 87, max=255)
-kolor2 = rgb(248, 152, 29, max=255)
-kolor3 = rgb(0, 178, 136, max=255)
-kolor4 = rgb(153, 51, 0, max=255)
-kolor5 = rgb(0, 174, 216, max=255)
-kolor6 = rgb(83, 83, 83, max=255)
+# Kraje UE
 countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT","RO","SE","SK",
             "AT","BE","DE","DK","EA","EU28","FI","FR","IE","LT","SI","UK")
+# Branże
+branza = read.table("key-branze.txt", header = T, sep = '\t')
+branze12 = c("Produkcja przemysłowa", "Energetyka i gazownictwo", "Budownictwo ", 
+             "Naprawa pojazdów", "Transport i gosp. magazynowa", 
+             "Zakwaterowanie i gastronomia", "Informacja i komunikacja",
+             "Obsługa rynku nieruchomości","Działalność profesjonalna",
+             "Usługi admin. i wsparcia","Sektor ICT","Handel")
+wielkosc3 = c("L_C10_S951_XK","M_C10_S951_XK","S_C10_S951_XK")
+
 
 
 # Search for data tables

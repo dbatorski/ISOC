@@ -51,7 +51,7 @@ countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT
 
 ## Zamówienia przez sieć
 
-png("figures/e-Zamowienia.png", width=640, height=400)
+png("figures/e-Zamowienia.png", width=640, height=400, pointsize=11)
 plot_eurostat_bars(dat_eSalesALL, "E_AESELL", "10_C10_S951_XK", 2017, "Firmy otrzymujące zamówienia przez sieć")
 dev.off()
 
@@ -72,7 +72,7 @@ dev.off()
 
 ## Sprzedaż w internecie
 
-png("figures/e-Sale.png", width=640, height=400)
+png("figures/e-Sale.png", width=640, height=360)
 plot_eurostat_bars(dat_eSalesALL, "E_ESELL", "10_C10_S951_XK", 2017, "Firmy sprzedające przez sieć (min 1% przychodów)")
 dev.off()
 
@@ -89,8 +89,64 @@ plot_eurostat_lines(dat_eSalesALL, "E_ESELL", "S_C10_S951_XK", "Małe")
 layout(1)
 dev.off()
 
+dBranze_eSalesW = dat_eSalesALL %>%
+  filter(sizen_r2 %in% wielkosc3, geo %in% c("PL","EU28"), time==2017, indic_is=="E_ESELL") %>%
+  select(sizen_r2, geo, values) %>%
+  tidyr::spread(key=geo, value=values)
+dBranze_eSalesW
+
+
+## Sprzedaż w sieci w podziale na branże
+names(dat_eSalesALL)
+table(dat_eSalesALL$sizen_r2)
+dBranze_eSales = dat_eSalesALL %>%
+  filter(sizen_r2 %in% branza$kod, geo=="PL", time==2017, indic_is=="E_ESELL") %>%
+  select(sizen_r2, values)
+dBranze_eSales = dat_eSalesALL %>%
+  filter(sizen_r2 %in% branza$kod, geo %in% c("PL","EU28"), time==2017, indic_is=="E_ESELL") %>%
+  select(sizen_r2, geo, values) %>%
+  tidyr::spread(key=geo, value=values)
+dBranze_eSales
+
+png("figures/e-Sale-Branże.png", width=640, height=360)
+op=par()
+par(mar=c(4,14,2,1))
+barplot(rbind(dBranze_eSales$PL, dBranze_eSales$EU28), names.arg=branze12, 
+        horiz=T, beside=T, las=1, xlim=c(0,70), border=NA, col=c(kolor2,kolor1), 
+        xlab="Procent firm z danej branży")
+text(dBranze_eSales$PL, (1:12)*3-1.5, labels=dBranze_eSales$PL, cex=0.9,
+     col=kolor2, pos=4, offset=0.3)
+text(dBranze_eSales$EU28, (1:12)*3-0.5, labels=dBranze_eSales$EU28, cex=0.9,
+     col=kolor1, pos=4, offset=0.3)
+par(op)
+dev.off()
+
+# Zamówienia w podziale na branże
+
+dBranze_eSales2 = dat_eSalesALL %>%
+  filter(sizen_r2 %in% branza$kod, geo %in% c("PL","EU28"), time==2017, indic_is=="E_AESELL") %>%
+  select(sizen_r2, geo, values) %>%
+  tidyr::spread(key=geo, value=values)
+dBranze_eSales2
+
+png("figures/e-Zamowienia-Branże.png", width=640, height=360)
+op=par()
+par(mar=c(4,14,2,1))
+barplot(rbind(dBranze_eSales2$PL, dBranze_eSales2$EU28), names.arg=branze12, 
+        horiz=T, beside=T, las=1, xlim=c(0,70), border=NA, col=c(kolor2,kolor1), 
+        xlab="Procent firm z danej branży")
+text(dBranze_eSales2$PL, (1:12)*3-1.5, labels=dBranze_eSales2$PL, cex=0.9,
+     col=kolor2, pos=4, offset=0.3)
+text(dBranze_eSales2$EU28, (1:12)*3-0.5, labels=dBranze_eSales2$EU28, cex=0.9,
+     col=kolor1, pos=4, offset=0.3)
+par(op)
+dev.off()
+
+dBranze_eSales/dBranze_eSales2
+
 
 ## Podgrupy sprzedających w sieci
+
 # E_AXSELL 	Enterprises having received orders placed via EDI-type messages
 # E_AWSELL 	Enterprises having received orders via a website or apps (web sales)
 png("figures/e-Sale-Web.png", width=640, height=400)
@@ -112,14 +168,14 @@ dev.off()
 
 ## Sprzedaż do krajów UE oraz reszty świata
 
-png("figures/e-Sale-EU.png", width=640, height=400)
+png("figures/e-Sale-EU.png", width=640, height=360)
 plot_eurostat_bars(dat_eSalesALL, "E_AESEU", "10_C10_S951_XK", 2017, "Firmy sprzedające przez sieć do innych krajów UE")
 dev.off()
-png("figures/e-Sale-Oth.png", width=640, height=400)
+png("figures/e-Sale-Oth.png", width=640, height=360)
 plot_eurostat_bars(dat_eSalesALL, "E_AESEUWW", "10_C10_S951_XK", 2017, "Firmy sprzedające przez sieć do innych krajów")
 dev.off()
 
-png("figures/e-Sale-TEU.png", width=640, height=400)
+png("figures/e-Sale-TEU.png", width=400, height=360)
 plot_eurostat_lines(dat_eSalesALL, "E_AESEU", "10_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów UE")
 dev.off()
 png("figures/e-Sale-TOth.png", width=640, height=400)
@@ -138,6 +194,27 @@ dev.off()
 plot_eurostat_lines(dat_eSalesALL, "E_AESEUWW", "L_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów")
 
 
+## Sprzedaż do krajów UE w podziale na branże
+dBranze_eSalesEU = dat_eSalesALL %>%
+  filter(sizen_r2 %in% branza$kod, geo %in% c("PL","EU28"), time==2017, indic_is=="E_AESEU") %>%
+  select(sizen_r2, geo, values) %>%
+  tidyr::spread(key=geo, value=values)
+dBranze_eSalesEU
+
+png("figures/e-Sale-BranżeEU.png", width=400, height=360)
+op=par()
+par(mar=c(4,14,2,1))
+barplot(rbind(dBranze_eSalesEU$PL, dBranze_eSalesEU$EU28), names.arg=branze12, 
+        horiz=T, beside=T, las=1, xlim=c(0,70), border=NA, col=c(kolor2,kolor1), 
+        xlab="Procent firm z danej branży")
+text(dBranze_eSalesEU$PL, (1:12)*3-1.5, labels=dBranze_eSalesEU$PL, cex=0.9,
+     col=kolor2, pos=4, offset=0.3)
+text(dBranze_eSalesEU$EU28, (1:12)*3-0.5, labels=dBranze_eSalesEU$EU28, cex=0.9,
+     col=kolor1, pos=4, offset=0.3)
+par(op)
+dev.off()
+
+
 ## Uwarunkowania sprzedaży przez sieć
 
 dat_IntBuy17 <- dat_IntBuy %>% 
@@ -148,7 +225,7 @@ dat_eSales17 <- dat_eSales %>%
   filter(indic_is=="E_ESELL", unit=='PC_ENT', sizen_r2=="10_C10_S951_XK", geo %in% countries, time==2017) %>%
   select(geo, val2=values)
 
-png("figures/war_eSale_buy.png", width=640, height=400)
+png("figures/war_eSale_buy.png", width=800, height=400)
 plot_eurostat_cross(dat_IntBuy17, dat_eSales17, "Sprzedaż online a liczba kupujących przez internet", "Procent osób kupujących przez sieć w ostatnich 3 miesiącach", "Procent firm, które sprzedają w sieci")
 dev.off()
 
