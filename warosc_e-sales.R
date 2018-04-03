@@ -1,6 +1,12 @@
 # Wykresy
 # Value of e-commerce sales [isoc_ec_evaln2]
 
+# E_ETURN 	Enterprises' total turnover from e-commerce
+# E_AWSVAL 	Enterprises' turnover from web sales
+# E_AXSVAL 	Enterprises' turnover from EDI-type sales
+# E_AWSVAL_B2C 	Enterprises' turnover from web sales - B2C
+# E_AWSVAL_B2BG 	Enterprises' turnover from web sales - B2B and B2G
+
 dat_sValue <- get_eurostat(id="isoc_ec_evaln2", time_format="num")
 table(dat_sValue$indic_is)
 table(dat_sValue$unit)
@@ -14,6 +20,11 @@ plot_eurostat_lines(dat_sValue2, "E_ETURN", "10_C10_S951_XK", "Wartość przycho
 dev.off()
 png("figures/eSale-WartoscS.png", width=640, height=400)
 plot_eurostat_lines(dat_sValue2, "E_AWSVAL", "10_C10_S951_XK", "Wartość przychodów ze sprzedaży przez internet",
+                    ylab="Procent przychodów firm")
+dev.off()
+
+png("figures/eSale-WartoscEDI.png", width=640, height=400)
+plot_eurostat_lines(dat_sValue2, "E_AXSVAL", "10_C10_S951_XK", "Wartość przychodów ze sprzedaży w systemie EDI",
                     ylab="Procent przychodów firm")
 dev.off()
 

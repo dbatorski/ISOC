@@ -103,3 +103,39 @@ screen(4)
 plot_eurostat_sm(dat_SocMed2, "E_SM1_WIKI", "Narzędzia wymiany informacji Wiki")
 close.screen(all = TRUE)
 dev.off()
+
+
+##################################################################################
+#  Social media use by purpose [isoc_cismp]
+
+# E_SM_PADVERT 	Develop the enterprise's image or market products
+# E_SM_PCUQOR 	Obtain or respond to customer opinions, reviews questions
+# E_SM_PCUDEV 	Involve customers in development or innovation of goods or services
+# E_SM_PBPCOLL 	Collaborate with business partners (e.g. suppliers, etc.) or other organisations (e.g. public authorities, non governmental organisations, etc.)
+# E_SM_PRCR 	Recruit employees
+# E_SM_PEXCHVOK 	Exchange views, opinions or knowledge within the enterprise
+# E_SM_PANY 	Use social media for any purpose (of sm_advert, sm_pcuqor, sm_pcudev, sm_pbpcoll, sm_prcr, sm_pexchvok) 
+
+dat_celSM <- get_eurostat(id="isoc_cismp", time_format="num")
+table(dat_celSM$indic_is)
+table(dat_celSM$unit)
+
+dat_celSM2 <- dat_celSM %>%
+  filter(unit=="PC_ENT", sizen_r2=="10_C10_S951_XK", geo %in% countries)
+
+
+png("figures/eSMcel.png", width=1200, height=600)
+split.screen(c(2,3))
+screen(1)
+plot_eurostat_bars(dat_celSM2, "E_SM_PADVERT", rok=2017, plottitle="SM: tworzenia wizerunku lub marketingu produktów")
+screen(2)
+plot_eurostat_bars(dat_celSM2, "E_SM_PCUQOR", rok=2017, plottitle="SM: odpowiadania na komentarze i pytania klientów")
+screen(3)
+plot_eurostat_bars(dat_celSM2, "E_SM_PCUDEV", rok=2017, plottitle="SM: zaangażowania klientów w rozwój produktów")
+screen(4)
+plot_eurostat_bars(dat_celSM2, "E_SM_PBPCOLL", rok=2017, plottitle="SM: współpracy z partnerami biz. i organizacjami")
+screen(5)
+plot_eurostat_bars(dat_celSM2, "E_SM_PRCR", rok=2017, plottitle="SM: rekrutacji pracowników")
+screen(6)
+plot_eurostat_bars(dat_celSM2, "E_SM_PEXCHVOK", rok=2017, plottitle="SM: wymiany opinii i wiedzy wewnątrz firmy")
+dev.off()

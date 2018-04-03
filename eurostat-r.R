@@ -5,6 +5,10 @@
 #install.packages("eurostat")
 library("eurostat")
 library(dplyr)
+source("functions/plot_eurostat_bars.R")
+source("functions/plot_eurostat_lines.R")
+source("functions/plot_eurostat_cross.R")
+source("functions/plot_eurostat_sm.R")
 
 
 kolor0 = rgb(216, 216, 216, max=255)
@@ -14,6 +18,9 @@ kolor3 = rgb(0, 178, 136, max=255)
 kolor4 = rgb(153, 51, 0, max=255)
 kolor5 = rgb(0, 174, 216, max=255)
 kolor6 = rgb(83, 83, 83, max=255)
+countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT","RO","SE","SK",
+            "AT","BE","DE","DK","EA","EU28","FI","FR","IE","LT","SI","UK")
+
 
 # Search for data tables
 toc <- get_eurostat_toc()
@@ -60,9 +67,6 @@ dat_eSalesALL %>%
   filter(indic_is=="E_ESELL" & geo=='HR') %>%
   select(time, values) %>%
   plot(ylim=c(0,40), las=1, bty='l', type='l', lwd=2)
-
-countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT","RO","SE","SK",
-           "AT","BE","DE","DK","EA","EU28","FI","FR","IE","LT","SI","UK")
 
 #######################################################################
 # Wykresy 

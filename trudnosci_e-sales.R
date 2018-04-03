@@ -20,9 +20,9 @@ dat_WSOds %>%
 # Jakiekolwiek problemy
 dane <- filter(dat_WSOds, indic_is=="E_AWSEU_DANY") %>%
   select(geo, values)
-kolory = rep("grey",29)
-kolory[which(dane$geo=='PL')] = "red"
-kolory[which(dane$geo=='EU28')] = "blue"
+kolory = rep(kolor0,29)
+kolory[which(dane$geo=='PL')] = kolor2
+kolory[which(dane$geo=='EU28')] = kolor1
 maks = max(dane$values, na.rm=T)
 png("figures/eSale-TrudnosciAll.png", width=640, height=400)
 barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory, 
@@ -30,16 +30,16 @@ barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory,
         main="Firmy napotykające trudności przy sprzedaży do innych krajów UE")
 pol=which(dane$geo=='PL')
 unia=which(dane$geo=='EU28')
-text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=2, cex=0.75, pos=3)
-text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=4, cex=0.75, pos=3)
+text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=kolor2, cex=0.75, pos=3)
+text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=kolor1, cex=0.75, pos=3)
 dev.off()
 
 # E_AWSEU_DAPL trudności z przystosowaniem oznakowania produktów zgodnie z wymogami innych krajów UE
 dane <- filter(dat_WSOds, indic_is=="E_AWSEU_DAPL") %>%
   select(geo, values)
-kolory = rep("grey",29)
-kolory[which(dane$geo=='PL')] = "red"
-kolory[which(dane$geo=='EU28')] = "blue"
+kolory = rep(kolor0,29)
+kolory[which(dane$geo=='PL')] = kolor2
+kolory[which(dane$geo=='EU28')] = kolor1
 maks = max(dane$values, na.rm=T)
 png("figures/eSale-TrudnosciLabel.png", width=640, height=400)
 barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory, 
@@ -47,16 +47,16 @@ barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory,
         main="Trudności z przystosowaniem oznakowania produktów zgodnie z wymogami innych krajów UE")
 pol=which(dane$geo=='PL')
 unia=which(dane$geo=='EU28')
-text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=2, cex=0.75, pos=3)
-text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=4, cex=0.75, pos=3)
+text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=kolor2, cex=0.75, pos=3)
+text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=kolor1, cex=0.75, pos=3)
 dev.off()
 
 # E_AWSEU_DBP ograniczenia nałożone przez własnych partnerów biznesowych
 dane <- filter(dat_WSOds, indic_is=="E_AWSEU_DBP") %>%
   select(geo, values)
-kolory = rep("grey",29)
-kolory[which(dane$geo=='PL')] = "red"
-kolory[which(dane$geo=='EU28')] = "blue"
+kolory = rep(kolor0,29)
+kolory[which(dane$geo=='PL')] = kolor2
+kolory[which(dane$geo=='EU28')] = kolor1
 maks = max(dane$values, na.rm=T)
 png("figures/eSale-TrudnosciPartn.png", width=640, height=400)
 barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory, 
@@ -64,16 +64,16 @@ barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory,
         main="Ograniczenia nałożone przez własnych partnerów biznesowych")
 pol=which(dane$geo=='PL')
 unia=which(dane$geo=='EU28')
-text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=2, cex=0.75, pos=3)
-text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=4, cex=0.75, pos=3)
+text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=kolor2, cex=0.75, pos=3)
+text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=kolor1, cex=0.75, pos=3)
 dev.off()
 
 # E_AWSEU_DFL nieznajomość języków obcych na poziomie umożliwiającym komunikację z klientami
 dane <- filter(dat_WSOds, indic_is=="E_AWSEU_DFL") %>%
   select(geo, values)
-kolory = rep("grey",29)
-kolory[which(dane$geo=='PL')] = "red"
-kolory[which(dane$geo=='EU28')] = "blue"
+kolory = rep(kolor0,29)
+kolory[which(dane$geo=='PL')] = kolor2
+kolory[which(dane$geo=='EU28')] = kolor1
 maks = max(dane$values, na.rm=T)
 png("figures/eSale-TrudnosciJezyk.png", width=640, height=400)
 barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory, 
@@ -81,16 +81,16 @@ barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory,
         main="Nieznajomość języków obcych na poziomie umożliwiającym komunikację z klientami z UE")
 pol=which(dane$geo=='PL')
 unia=which(dane$geo=='EU28')
-text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=2, cex=0.75, pos=3)
-text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=4, cex=0.75, pos=3)
+text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=kolor2, cex=0.75, pos=3)
+text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=kolor1, cex=0.75, pos=3)
 dev.off()
 
 # E_AWSEU_DHCD wysokie koszty dostawy lub zwrotu produktów
 dane <- filter(dat_WSOds, indic_is=="E_AWSEU_DHCD") %>%
   select(geo, values)
-kolory = rep("grey",29)
-kolory[which(dane$geo=='PL')] = "red"
-kolory[which(dane$geo=='EU28')] = "blue"
+kolory = rep(kolor0,29)
+kolory[which(dane$geo=='PL')] = kolor2
+kolory[which(dane$geo=='EU28')] = kolor1
 maks = max(dane$values, na.rm=T)
 png("figures/eSale-TrudnosciKoszty.png", width=640, height=400)
 barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory, 
@@ -98,16 +98,16 @@ barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory,
         main="Wysokie koszty dostawy lub zwrotu produktów")
 pol=which(dane$geo=='PL')
 unia=which(dane$geo=='EU28')
-text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=2, cex=0.75, pos=3)
-text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=4, cex=0.75, pos=3)
+text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=kolor2, cex=0.75, pos=3)
+text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=kolor1, cex=0.75, pos=3)
 dev.off()
 
 # E_AWSEU_DRCD trudności związane z rozpatrywaniem reklamacji i sporów
 dane <- filter(dat_WSOds, indic_is=="E_AWSEU_DRCD") %>%
   select(geo, values)
-kolory = rep("grey",29)
-kolory[which(dane$geo=='PL')] = "red"
-kolory[which(dane$geo=='EU28')] = "blue"
+kolory = rep(kolor0,29)
+kolory[which(dane$geo=='PL')] = kolor2
+kolory[which(dane$geo=='EU28')] = kolor1
 maks = max(dane$values, na.rm=T)
 png("figures/eSale-TrudnosciReklamacje.png", width=640, height=400)
 barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory, 
@@ -115,8 +115,8 @@ barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory,
         main="Trudności związane z rozpatrywaniem reklamacji i sporów")
 pol=which(dane$geo=='PL')
 unia=which(dane$geo=='EU28')
-text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=2, cex=0.75, pos=3)
-text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=4, cex=0.75, pos=3)
+text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=kolor2, cex=0.75, pos=3)
+text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=kolor1, cex=0.75, pos=3)
 dev.off()
 
 dPol = dat_WSOds %>% 
@@ -140,12 +140,12 @@ png("figures/eSale-TrudnosciPL.png", width=640, height=480)
 par(mar=c(5, 13, 4, 2) + 0.1)
 barplot(t(as.matrix(dane[,c(2,3)])), beside=T, las=1, horiz=T, xlim=c(0,70),
         names.arg=labelki, xlab="Procent firm sprzedających do innych krajów UE",
-        main="Trudności w związku ze sprzedażą online do krajów UE", col=c(2,4), border=NA)
-legend("right", legend=c("EU28", "Polska"), fill=c(4,2), border=NA, bty="n" )
+        main="Trudności w związku ze sprzedażą online do krajów UE", col=c(kolor2,kolor1), border=NA)
+legend("right", legend=c("EU28", "Polska"), fill=c(kolor1,kolor2), border=NA, bty="n" )
 dPol=as.vector(unlist(dane[,2]))
 dEU=as.vector(unlist(dane[,3]))
-text(dPol, 1+c(0.5, 3.5, 6.5, 9.5, 12.5, 15.5), labels=dPol, col=2, cex=0.75,pos=4,offset=0.1)
-text(dEU, 2+c(0.5, 3.5, 6.5, 9.5, 12.5, 15.5), labels=dEU, col=4, cex=0.75,pos=4,offset=0.1)
+text(dPol, 1+c(0.5, 3.5, 6.5, 9.5, 12.5, 15.5), labels=dPol, col=kolor2, cex=0.75,pos=4,offset=0.1)
+text(dEU, 2+c(0.5, 3.5, 6.5, 9.5, 12.5, 15.5), labels=dEU, col=kolor1, cex=0.75,pos=4,offset=0.1)
 par(op)
 dev.off()
 

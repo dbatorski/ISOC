@@ -19,6 +19,35 @@ dat_IntAccess <- dat_IntAccess %>%
 countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT","RO","SE",
             "SK","AT","BE","DE","DK","EA","EU28","FI","FR","IE","LT","SI","UK")
 
+# E_AESELL 	Enterprises having received orders via computer mediated networks
+# E_ESELL 	Enterprises selling online (at least 1% of turnover)
+# E_AXSELL 	Enterprises having received orders placed via EDI-type messages
+# E_AWSELL 	Enterprises having received orders via a website or apps (web sales)
+# E_AWS_B2BG 	Enterprises which sold via a website or apps - B2B and B2G
+# E_AWS_B2C 	Enterprises which sold via a website or apps - B2C
+# E_AWS_B2C_WEBCMP 	Enterprises which sold via a website or apps - B2C and website has electronic submission of complaints
+# E_AWSVAL_B2C_GE10WS 	Enterprises where B2C web sales are 10% or more of the web sales
+# E_AWS_B2C_GT1WS 	Enterprises where B2C web sales are more than 1% of the web sales
+# E_AWS_GT1_B2C_GT10WS 	Enterprises where web sales are more than 1% of total turnover and B2C web sales more than 10% of the web sales
+# E_AWSHM 	Enterprises with web sales to the own country
+# E_AWSEU 	Enterprises with web sales to other EU countries
+# E_AWSWW 	Enterprises with web sales to the rest of the world
+# E_AESHM 	Enterprises having done electronic sales to the own country
+# E_AESEU 	Enterprises having done electronic sales to other EU countries
+# E_AESWW 	Enterprises having done electronic sales to the rest of the world
+# E_AESEUWW 	Enterprises having done electronic sales to other EU countries and the rest of the world
+# E_AESBHM 	Enterprises having done electronic sales or purchases to the own country
+# E_AESBEU 	Enterprises having done electronic sales or purchases to other EU countries
+# E_AESBWW 	Enterprises having done electronic sales or purchases in the rest of the world
+# E_AESPAYON 	Enterprises accepting online payment for sales via website
+# E_AESPAYOFF 	Enterprises accepting offline payment for sales via website
+# E_AWS_B2C_CMP 	Enterprises which sold via a website or apps - B2C and via an e-commerce marketplace
+# E_AWSVAL_B2C_GE10WS_CMP 	Enterprises where B2C web sales are 10% or more of the total web sales and which sold via an e-commerce marketplace
+# E_AWSFOR 	Received orders placed via a website or apps from customers in foreign countries (EU or rest of the world)
+# E_AWS_COWN 	Enterprises which sold via a website or apps - via their own website or apps
+# E_AWS_CMP 	Enterprises which sold via a website or apps - via an e-commerce marketplace
+# E_AWS_CMP_GE20 	Enterprises which sold via a website or apps - via an e-commerce marketplace for at least 20% of the web sales 
+
 
 ## Zamówienia przez sieć
 
@@ -58,6 +87,26 @@ plot_eurostat_lines(dat_eSalesALL, "E_ESELL", "L_C10_S951_XK", "Duże")
 plot_eurostat_lines(dat_eSalesALL, "E_ESELL", "M_C10_S951_XK", "Średnie")
 plot_eurostat_lines(dat_eSalesALL, "E_ESELL", "S_C10_S951_XK", "Małe")
 layout(1)
+dev.off()
+
+
+## Podgrupy sprzedających w sieci
+# E_AXSELL 	Enterprises having received orders placed via EDI-type messages
+# E_AWSELL 	Enterprises having received orders via a website or apps (web sales)
+png("figures/e-Sale-Web.png", width=640, height=400)
+plot_eurostat_bars(dat_eSalesALL, "E_AXSELL", "10_C10_S951_XK", 2017, "Firmy otrzymujące zamówienia przez strony lub aplikacje")
+dev.off()
+png("figures/e-Sale-EDI.png", width=640, height=400)
+plot_eurostat_bars(dat_eSalesALL, "E_AWSELL", "10_C10_S951_XK", 2017, "Firmy otrzymujące zamówienia w systemie EDI")
+dev.off()
+
+# E_AWS_B2BG 	Enterprises which sold via a website or apps - B2B and B2G
+# E_AWS_B2C 	Enterprises which sold via a website or apps - B2C
+png("figures/e-Sale-B2BG.png", width=640, height=400)
+plot_eurostat_bars(dat_eSalesALL, "E_AWS_B2BG", "10_C10_S951_XK", 2017, "Firmy sprzedające przez strony i aplikacje B2B")
+dev.off()
+png("figures/e-Sale-B2C.png", width=640, height=400)
+plot_eurostat_bars(dat_eSalesALL, "E_AWS_B2C", "10_C10_S951_XK", 2017, "Firmy sprzedające przez strony i aplikacje B2C")
 dev.off()
 
 
