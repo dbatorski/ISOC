@@ -30,10 +30,10 @@ countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT
 # Branże
 branza = read.table("key-branze.txt", header = T, sep = '\t')
 branze12 = c("Produkcja przemysłowa", "Energetyka i gazownictwo", "Budownictwo ", 
-             "Naprawa pojazdów", "Transport i gosp. magazynowa", 
-             "Zakwaterowanie i gastronomia", "Informacja i komunikacja",
+             "Naprawa pojazdów", "Handel", "Transport i gosp. magazynowa", 
+             "Zakwaterowanie","Sektor ICT", "Informacja i komunikacja",
              "Obsługa rynku nieruchomości","Działalność profesjonalna",
-             "Usługi admin. i wsparcia","Sektor ICT","Handel")
+             "Usługi admin. i wsparcia")
 wielkosc3 = c("L_C10_S951_XK","M_C10_S951_XK","S_C10_S951_XK")
 
 

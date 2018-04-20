@@ -14,9 +14,9 @@ plot_eurostat_lines = function(dataset, indicator, breakdown='10_C10_S951_XK', p
     seria <- dane %>% 
       filter(geo==i) %>%
       select(time, values)
-    lines(seria, col='grey')
-    text(2017, seria[seria$time==2017,], labels=i, pos=4, offset=0.5, cex=0.6, col=kolor0)
-    text(rmin, seria[seria$time==rmin,], labels=i, pos=2, offset=0.5, cex=0.6, col=kolor0)
+    lines(seria, col=kolor0)
+    text(2017, seria[seria$time==2017,], labels=i, pos=4, offset=0.5, cex=0.6, col=kolor3)
+    text(rmin, seria[seria$time==rmin,], labels=i, pos=2, offset=0.5, cex=0.6, col=kolor3)
   }
   s.pol <- dane[dane$geo=="PL",c("time", "values")]
   s.ue <- dane[dane$geo=="EU28",c("time", "values")]

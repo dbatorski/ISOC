@@ -4,8 +4,8 @@
 library("eurostat")
 library(dplyr)
 
-dat_WSOds <- get_eurostat(id="isoc_ec_wsobs_n2", time_format="num")
-dat_WSOds <- dat_WSOds %>%
+dat_WSOds1 <- get_eurostat(id="isoc_ec_wsobs_n2", time_format="num")
+dat_WSOds <- dat_WSOds1 %>%
   filter(unit=="PC_ENT_AWSEU", sizen_r2=="10_C10_S951_XK", geo %in% countries, time==2017)
 
 dat_WSOds2 <- label_eurostat(dat_WSOds)
@@ -151,5 +151,39 @@ text(dEU, 2+c(0.5, 3.5, 6.5, 9.5, 12.5, 15.5), labels=dEU, col=kolor1, cex=0.75,
 par(op)
 dev.off()
 
-  
-  
+
+trud5 = c('E_AWSEU_DAPL','E_AWSEU_DBP','E_AWSEU_DFL','E_AWSEU_DHCD','E_AWSEU_DRCD')  
+dat_WSOds1 %>% 
+  filter(unit=="PC_ENT_AWSEU", sizen_r2 %in% branza$kod,  geo %in% c("PL", "EU28"), 
+         time==2017, indic_is=="E_AWSEU_DANY") %>%
+  select(sizen_r2, geo, values) %>%
+  tidyr::spread(key=geo, value=values)
+
+t2 = dat_WSOds1 %>% 
+  filter(unit=="PC_ENT_AWSEU", sizen_r2 %in% branza$kod,  geo == "PL", 
+         time==2017, indic_is %in% trud5) %>%
+  select(sizen_r2, indic_is, values) %>%
+  tidyr::spread(key=indic_is, value=values)
+t2
+
+op=par()
+par(mar=c(4,14,2,1))
+
+barplot(t2$E_AWSEU_DAPL, names.arg=branze12, main="etykiety",
+        horiz=T, las=1, xlim=c(0,50), border=NA, col=kolor2, 
+        xlab="Procent firm z danej branży")
+barplot(t2$E_AWSEU_DBP, names.arg=branze12, main="ograniczenia partnerów",
+        horiz=T, las=1, xlim=c(0,50), border=NA, col=kolor2, 
+        xlab="Procent firm z danej branży")
+barplot(t2$E_AWSEU_DFL, names.arg=branze12, main="języki",
+        horiz=T, las=1, xlim=c(0,100), border=NA, col=kolor2, 
+        xlab="Procent firm z danej branży")
+barplot(t2$E_AWSEU_DHCD, names.arg=branze12, main="dostawy i zwroty",
+        horiz=T, las=1, xlim=c(0,100), border=NA, col=kolor2, 
+        xlab="Procent firm z danej branży")
+barplot(t2$E_AWSEU_DRCD, names.arg=branze12, main="reklamacje",
+        horiz=T, las=1, xlim=c(0,100), border=NA, col=kolor2, 
+        xlab="Procent firm z danej branży")
+
+par(op)
+
