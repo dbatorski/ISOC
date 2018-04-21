@@ -1,7 +1,7 @@
 # Function for ploting lines with eurostat data
 
 plot_eurostat_lines = function(dataset, indicator, breakdown='10_C10_S951_XK', plottitle,
-                               ylab="Procent firm"){
+                               ylab="% firm"){
   countries=c("BG","CY","CZ","EE","EL","ES","HR","HU","IT","LU","LV","NL","PL","PT","RO","SE","SK",
               "AT","BE","DE","DK","EA","EU28","FI","FR","IE","LT","SI","UK")
   dane = dataset %>%

@@ -24,14 +24,16 @@ kolory = rep(kolor0,29)
 kolory[which(dane$geo=='PL')] = kolor2
 kolory[which(dane$geo=='EU28')] = kolor1
 maks = max(dane$values, na.rm=T)
-png("figures/eSale-TrudnosciAll.png", width=800, height=400)
-barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory, 
-        las=1, cex.names=0.7, xlab="Kraj", ylab="Procent firm sprzedających do UE", 
-        main="Firmy napotykające trudności przy sprzedaży do innych krajów UE",
-        xaxt='n')
-axis(1, at=(1:29)*1.2-0.5, tick=F, labels=dane$geo, cex.axis=0.7)
 pol=which(dane$geo=='PL')
 unia=which(dane$geo=='EU28')
+dane$geo=as.character(dane$geo)
+dane$geo[unia]='UE'
+png("figures/eSale-TrudnosciAll.png", width=800, height=400)
+barplot(dane$values, names.arg=dane$geo, ylim=c(0,100), border=NA, col=kolory, 
+        las=1, cex.names=0.75, xlab="Kraj", ylab="% firm sprzedających do UE", 
+        main="Firmy napotykające trudności przy sprzedaży do innych krajów UE")
+#        xaxt='n')
+#axis(1, at=(1:29)*1.2-0.5, tick=F, labels=dane$geo, cex.axis=0.7)
 text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=kolor2, cex=0.75, pos=3)
 text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=kolor1, cex=0.75, pos=3)
 dev.off()
@@ -141,7 +143,7 @@ op = par()
 png("figures/eSale-TrudnosciPL.png", width=800, height=400)
 par(mar=c(5, 13, 4, 2) + 0.1)
 barplot(t(as.matrix(dane[,c(2,3)])), beside=T, las=1, horiz=T, xlim=c(0,70),
-        names.arg=labelki, xlab="Procent firm sprzedających do innych krajów UE",
+        names.arg=labelki, xlab="% firm sprzedających do innych krajów UE",
         main="Trudności w związku ze sprzedażą online do krajów UE", col=c(kolor2,kolor1), border=NA)
 legend("right", legend=c("EU28", "Polska"), fill=c(kolor1,kolor2), border=NA, bty="n" )
 dPol=as.vector(unlist(dane[,2]))

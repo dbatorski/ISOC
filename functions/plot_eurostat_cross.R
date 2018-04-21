@@ -18,13 +18,17 @@ plot_eurostat_cross = function(dataset, dataset2, plottitle, labx="X", laby="Y",
   kolory = rep(kolor0,29)
   kolory[which(dane$geo=='PL')] = kolor2
   kolory[which(dane$geo=='EU28')] = kolor1
+  dane$geo=as.character(dane$geo)
+  unia = which(dane$geo=="EU28")
+  dane$geo[unia]="UE"
+#  dane$geo[dane$geo=="EA"]=""
   maks1 = max(dane$val1, na.rm=T)
   maks2 = max(dane$val2, na.rm=T)
   plot(c(0,maks1), c(0,maks2), type='n', las=1, bty='l', main=plottitle, xlab=labx, ylab=laby)
   points(dane$val1, dane$val2, pch=19, col=kolor0, cex=0.5)
   text(dane$val1, dane$val2, labels=dane$geo, cex=0.75, col=kolor3, offset=0)
   text(dane$val1[dane$geo=='PL'], dane$val2[dane$geo=='PL'], labels="PL", cex=0.75, col=kolor2, offset=0)
-  text(dane$val1[dane$geo=='EU28'], dane$val2[dane$geo=='EU28'], labels="EU28", cex=0.75, col=kolor1, offset=0)
+  text(dane$val1[unia], dane$val2[unia], labels="UE", cex=0.75, col=kolor1, offset=0)
   if(regresja==T){
     model1 <- lm(dane$val2 ~ dane$val1)
     abline(model1, col=1)

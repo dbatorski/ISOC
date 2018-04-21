@@ -58,7 +58,7 @@ dat_eSales17 <- dat_eSales %>%
 
 png("figures/eAdsESell.png", width=800, height=400)
 plot_eurostat_cross(dat_SocMed16, dat_eSales17, "Reklama w sieci a sprzedaż online", 
-                    "Procent firm reklamujących się w sieci", "Procent firm, które sprzedają w sieci")
+                    "% firm reklamujących się w sieci", "% firm, które sprzedają w sieci")
 dev.off()
 
 dat_eSalesALL17 <- dat_eSalesALL %>% 

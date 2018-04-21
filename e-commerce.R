@@ -176,8 +176,11 @@ plot_eurostat_bars(dat_eSalesALL, "E_AESEUWW", "10_C10_S951_XK", 2017, "Firmy sp
 dev.off()
 
 png("figures/e-Sale-TEU.png", width=400, height=360)
+par(mar=c(2, 4, 2, 2) + 0.1)
 plot_eurostat_lines(dat_eSalesALL, "E_AESEU", "10_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów UE")
+par(mar=c(5, 4, 4, 2) + 0.1)
 dev.off()
+
 png("figures/e-Sale-TOth.png", width=640, height=400)
 plot_eurostat_lines(dat_eSalesALL, "E_AESEUWW", "10_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów")
 dev.off()
@@ -201,12 +204,12 @@ dBranze_eSalesEU = dat_eSalesALL %>%
   tidyr::spread(key=geo, value=values)
 dBranze_eSalesEU
 
-png("figures/e-Sale-BranżeEU.png", width=400, height=360)
+png("figures/e-Sale-BranżeEU.png", width=400, height=400)
 op=par()
 par(mar=c(4,14,2,1))
 barplot(rbind(dBranze_eSalesEU$PL, dBranze_eSalesEU$EU28), names.arg=branze12, 
         horiz=T, beside=T, las=1, xlim=c(0,70), border=NA, col=c(kolor2,kolor1), 
-        xlab="Procent firm z danej branży")
+        xlab="% firm")
 text(dBranze_eSalesEU$PL, (1:12)*3-1.5, labels=dBranze_eSalesEU$PL, cex=0.9,
      col=kolor2, pos=4, offset=0.3)
 text(dBranze_eSalesEU$EU28, (1:12)*3-0.5, labels=dBranze_eSalesEU$EU28, cex=0.9,
@@ -226,7 +229,9 @@ dat_eSales17 <- dat_eSales %>%
   select(geo, val2=values)
 
 png("figures/war_eSale_buy.png", width=800, height=400)
-plot_eurostat_cross(dat_IntBuy17, dat_eSales17, "Sprzedaż online a liczba kupujących przez internet", "Procent osób kupujących przez sieć w ostatnich 3 miesiącach", "Procent firm, które sprzedają w sieci")
+plot_eurostat_cross(dat_IntBuy17, dat_eSales17, "Sprzedaż online a liczba kupujących przez internet", 
+                    "% osób kupujących przez sieć w ostatnich 3 miesiącach", 
+                    "% firm, które sprzedają w sieci")
 dev.off()
 
 plot_eurostat_bars(dat_IntAccess, "E_IACC", plottitle="Dostęp do internetu w firmach")

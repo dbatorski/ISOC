@@ -16,11 +16,11 @@ dat_sValue2 <- dat_sValue %>%
 
 png("figures/eSale-WartoscE.png", width=400, height=400)
 plot_eurostat_lines(dat_sValue2, "E_ETURN", "10_C10_S951_XK", "Wartość przychodów z e-commerce",
-                    ylab="Procent przychodów firm")
+                    ylab="% przychodów firm")
 dev.off()
 png("figures/eSale-WartoscS.png", width=400, height=400)
 plot_eurostat_lines(dat_sValue2, "E_AWSVAL", "10_C10_S951_XK", "Wartość przychodów ze sprzedaży przez internet",
-                    ylab="Procent przychodów firm")
+                    ylab="% przychodów firm")
 dev.off()
 
 png("figures/eSale-WartoscEDI.png", width=800, height=400)
@@ -65,8 +65,8 @@ kolory = rep(kolor0,dim(p1)[1])
 kolory[which(p1$geo=='PL')] = kolor2
 kolory[which(p1$geo=='EU28')] = kolor1
 barplot(p1$E_AWSVAL_B2BG, horiz=T, names.arg=p1$geo, xlim=c(0,10), 
-        las=1, border=NA, col=kolory, xlab="Procent przychodów",
-        main="Sprzedaż B2B")
+        las=1, border=NA, col=kolory, xlab="% przychodów",
+        main="Sprzedaż B2B", cex.names=0.8)
 dev.off()
 
 png("figures/eSale-ValB2C.png", width=400, height=400)
@@ -74,6 +74,6 @@ kolory = rep(kolor0,dim(p2)[1])
 kolory[which(p2$geo=='PL')] = kolor2
 kolory[which(p2$geo=='EU28')] = kolor1
 barplot(p2$E_AWSVAL_B2C, horiz=T, names.arg=p2$geo, xlim=c(0,10),
-        las=1, border=NA, col=kolory, xlab="Procent przychodów",
-        main="Sprzedaż B2C")
+        las=1, border=NA, col=kolory, xlab="% przychodów",
+        main="Sprzedaż B2C", cex.names=0.8)
 dev.off()

@@ -11,12 +11,13 @@ plot_eurostat_bars = function(dataset, indicator, breakdown='10_C10_S951_XK', ro
   kolory[which(dane$geo=='PL')] = kolor2
   kolory[which(dane$geo=='EU28')] = kolor1
   maks = max(dane$values, na.rm=T)
-  barplot(dane$values, names.arg=dane$geo, ylim=c(0,maks), border=NA, col=kolory, 
-          las=1, cex.names=0.7, xlab="Kraj", ylab="Procent firm", main=plottitle,
-          xaxt='n')
-  axis(1, at=(1:dim(dane)[1])*1.2-0.5, labels=dane$geo, tick=F, cex.axis=0.7)
   pol=which(dane$geo=='PL')
   unia=which(dane$geo=='EU28')
+  nazwykrajow = as.character(dane$geo)
+  nazwykrajow[unia]="UE" # zmiana nazwy na UE
+  barplot(dane$values, names.arg=nazwykrajow, ylim=c(0,maks), border=NA, col=kolory, 
+          las=1, cex.names=0.62, xlab="", ylab="% firm", main=plottitle)#,xaxt='n')
+#  axis(1, at=(1:dim(dane)[1])*1.2-0.5, labels=dane$geo, tick=F, cex.axis=0.6)
   text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=kolor2, cex=0.75, pos=3)
   text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=kolor1, cex=0.75, pos=3)
 }
