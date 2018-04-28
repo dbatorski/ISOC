@@ -90,7 +90,8 @@ dev.off()
 png("figures/eSMsm2.png", width=400, height=400)
 op=par()
 par(mar=c(5,4,2,0.1))
-plot_eurostat_sm(dat_SocMed2, "E_SM1_SNET", "Serwisy społecznościowe")
+plot_eurostat_bars(dat_SocMed2, indicator="E_SM1_SNET", 
+                   plottitle="Serwisy społecznościowe")
 par(op)
 dev.off()
 

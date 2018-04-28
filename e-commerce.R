@@ -77,7 +77,7 @@ plot_eurostat_bars(dat_eSalesALL, "E_ESELL", "10_C10_S951_XK", 2017, "Firmy sprz
 dev.off()
 
 png("figures/e-SaleT.png", width=640, height=400)
-plot_eurostat_lines(dat_eSalesALL, "E_ESELL", "10_C10_S951_XK", "Firmy sprzedające przez sieć (min 1% przychodów)")
+plot_eurostat_lines2(dat_eSalesALL, "E_ESELL", "10_C10_S951_XK", "Firmy sprzedające przez sieć (min 1% przychodów)")
 dev.off()
 
 png("figures/e-Sale3.png", width=640, height=400)
@@ -177,7 +177,7 @@ dev.off()
 
 png("figures/e-Sale-TEU.png", width=400, height=360)
 par(mar=c(2, 4, 2, 2) + 0.1)
-plot_eurostat_lines(dat_eSalesALL, "E_AESEU", "10_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów UE")
+plot_eurostat_lines2(dat_eSalesALL, "E_AESEU", "10_C10_S951_XK", "Firm sprzedające przez sieć do innych krajów UE")
 par(mar=c(5, 4, 4, 2) + 0.1)
 dev.off()
 

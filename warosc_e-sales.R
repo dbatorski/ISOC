@@ -15,11 +15,11 @@ dat_sValue2 <- dat_sValue %>%
   filter(unit=="PC_TURN", sizen_r2=="10_C10_S951_XK", geo %in% countries)
 
 png("figures/eSale-WartoscE.png", width=400, height=400)
-plot_eurostat_lines(dat_sValue2, "E_ETURN", "10_C10_S951_XK", "Wartość przychodów z e-commerce",
+plot_eurostat_lines2(dat_sValue2, "E_ETURN", "10_C10_S951_XK", "Wartość przychodów z e-commerce",
                     ylab="% przychodów firm")
 dev.off()
 png("figures/eSale-WartoscS.png", width=400, height=400)
-plot_eurostat_lines(dat_sValue2, "E_AWSVAL", "10_C10_S951_XK", "Wartość przychodów ze sprzedaży przez internet",
+plot_eurostat_lines2(dat_sValue2, "E_AWSVAL", "10_C10_S951_XK", "Wartość przychodów ze sprzedaży przez internet",
                     ylab="% przychodów firm")
 dev.off()
 

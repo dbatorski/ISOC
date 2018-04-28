@@ -16,8 +16,15 @@ plot_eurostat_bars = function(dataset, indicator, breakdown='10_C10_S951_XK', ro
   nazwykrajow = as.character(dane$geo)
   nazwykrajow[unia]="UE" # zmiana nazwy na UE
   barplot(dane$values, names.arg=nazwykrajow, ylim=c(0,maks), border=NA, col=kolory, 
-          las=1, cex.names=0.62, xlab="", ylab="% firm", main=plottitle)#,xaxt='n')
-#  axis(1, at=(1:dim(dane)[1])*1.2-0.5, labels=dane$geo, tick=F, cex.axis=0.6)
+          las=1, cex.names=0.62, xlab="", ylab="% firm", main=plottitle, xaxt='n')
+#  axis(1, at=(1:dim(dane)[1])*1.2-0.5, labels=dane$geo, tick=F, cex.axis=0.62)
+  x1 = 1:dim(dane)[1]
+  nparz = which(x1%%2==1)
+  aparz = which(x1%%2==0)
+  axis(1, at=((1:dim(dane)[1])*1.2-0.5)[nparz], labels=nazwykrajow[nparz], 
+       tick=F, cex.axis=0.62, line=-1)
+  axis(1, at=((1:dim(dane)[1])*1.2-0.5)[aparz], labels=nazwykrajow[aparz], 
+       tick=F, cex.axis=0.62)
   text(1.2*pol-0.6, dane$values[pol], labels=dane$values[pol], col=kolor2, cex=0.75, pos=3)
   text(1.2*unia-0.6, dane$values[unia], labels=dane$values[unia], col=kolor1, cex=0.75, pos=3)
 }

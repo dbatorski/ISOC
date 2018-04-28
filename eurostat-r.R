@@ -7,6 +7,7 @@ library("eurostat")
 library(dplyr)
 source("functions/plot_eurostat_bars.R")
 source("functions/plot_eurostat_lines.R")
+source("functions/plot_eurostat_lines2.R")
 source("functions/plot_eurostat_cross.R")
 source("functions/plot_eurostat_sm.R")
 
